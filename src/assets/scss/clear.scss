@@ -1,0 +1,18 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: $font-primary;
+}
+
+p, span, a, h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  cursor: pointer;
+  transition: opacity .2s;
+  &:hover {
+    opacity: .5;
+  }
+}
