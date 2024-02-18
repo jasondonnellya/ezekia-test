@@ -1,5 +1,5 @@
 <template>
-  <div class="museum-highlight" :class="highlightClass">
+  <div class="museum-highlight" :class="brandClass">
     <!-- Display the available information for the highlight -->
     <!-- Badge slot for adding different badges depending on the highlight type. -->
     <div class="museum-highlight__badge">
@@ -21,7 +21,7 @@
       <div class="museum-highlight__bottom">
         <span class="museum-highlight__date text-right">{{ museumHighlight.date }}</span>
         <div class="text-center">
-          <button class="museum-highlight__button" @click="$emit('get-new-image', museumHighlight.id)">Refresh image</button>
+          <button class="museum-highlight__button" @click="getNewImage">Refresh image</button>
         </div>
       </div>
     </div>
@@ -63,20 +63,24 @@ export default {
     image() {
       return this.refreshedImage?.length ? this.refreshedImage : this.museumHighlight.image;
     },
-    highlightClass() {
+    brandClass() {
       let highlightClass = ''
       if(this.museumHighlight.isPartner) highlightClass += 'museum-highlight--partner';
       return highlightClass
     }
   },
   methods: {
-    getNewImage() {
-      return this.refreshedImage;
-    }
+    async getNewImage() {
+      // This method can be used to refresh the image in-component.
+      // this.refreshedImage = await fetch(`https://picsum.photos/1000`).then(res => res.url);
+      
+      // This method can be used to update the dataset.
+      this.$emit('get-new-image', this.museumHighlight.id);
+    },
   },
   created() {
     // This line is just for visually showing images when the page loads initially but in reality the default images would be present in the API data.
-    this.$emit('get-new-image', this.museumHighlight.id);
+    this.getNewImage();
   },
 };
 </script>
