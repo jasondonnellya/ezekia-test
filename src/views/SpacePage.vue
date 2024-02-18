@@ -165,7 +165,7 @@ export default {
      * @returns {String} Url for image src attributes.
      */
     async FetchNewImage() {
-      return await fetch(`https://picsum.photos/400`).then(res => res.url);
+      return await fetch(`https://picsum.photos/1000`).then(res => res.url);
     },
     /**
      * Concatenate and return all possible museumhighlights in correct format.
